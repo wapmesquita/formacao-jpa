@@ -3,8 +3,6 @@ package br.com.dxt.formacao.service.jpa;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
 import br.com.dxt.formacao.domain.Pessoa;
