@@ -1,0 +1,27 @@
+package br.com.dxt.formacao.domain;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Pessoa {
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.SEQUENCE)
+	public Integer id;
+
+	@Column(name="nome")
+	public String name;
+
+	@Column(name="idade")
+	public Integer age;
+
+	@Override
+	public String toString() {
+		return "Pessoa [id=" + id + ", nome=" + name + ", idade=" + age + "]";
+	}
+
+}
