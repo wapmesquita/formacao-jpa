@@ -11,6 +11,7 @@
                 <module>first-class</module>
                 <module>first-class-impl</module>
                 <module>select-class</module>
+		<module>select-class-impl</module>
 	</modules>
 
 </project>
