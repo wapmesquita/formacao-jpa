@@ -11,6 +11,9 @@ public class Utils {
 	public static String getString(String msg) {
 		return JOptionPane.showInputDialog((msg));
 	}
-
+	
+	public static boolean confirm(String msg) {
+		return JOptionPane.showConfirmDialog(null, msg + "?") == 0;
+	}
 
 }

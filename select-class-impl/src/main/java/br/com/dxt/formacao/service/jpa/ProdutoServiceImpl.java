@@ -71,9 +71,20 @@ public class ProdutoServiceImpl {
 		sb.append(Produto.class.getSimpleName());
 		sb.append(" p");
 
-		TypedQuery<ProdutoSum> qry = em.createQuery(sb.toString(), ProdutoSum.class);
+		TypedQuery<ProdutoSum> qry = em.createQuery(sb.toString(),
+				ProdutoSum.class);
 		return qry.getSingleResult();
 	}
 
+	public List<Produto> buscarPorNome(String nome) {
+		String sql = "FROM " + Produto.class.getSimpleName() + " p "
+				+ "WHERE UPPER(p.nome) LIKE UPPER(:paramName)";
+
+		TypedQuery<Produto> qry = em.createQuery(sql, Produto.class);
+
+		qry.setParameter("paramName", "%" + nome + "%");
+
+		return qry.getResultList();
+	}
 
 };
