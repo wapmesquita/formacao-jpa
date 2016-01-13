@@ -16,6 +16,7 @@
 		<module>select-class</module>
 		<module>select-class-impl</module>
 		<module>inheritance-class</module>
+                <module>inheritance-class-impl</module>
 	</modules>
 
 </project>
