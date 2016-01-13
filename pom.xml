@@ -7,10 +7,13 @@
 	<version>1.0-SNAPSHOT</version>
 	<url>http://maven.apache.org</url>
 	<modules>
+		<module>exercicio-sistema-bancario</module>
+		<module>cpf-validator</module>
+		<module>banco</module>
 		<module>clean-project</module>
-                <module>first-class</module>
-                <module>first-class-impl</module>
-                <module>select-class</module>
+		<module>first-class</module>
+		<module>first-class-impl</module>
+		<module>select-class</module>
 		<module>select-class-impl</module>
 	</modules>
 
