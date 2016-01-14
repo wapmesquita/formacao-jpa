@@ -9,7 +9,7 @@ public class EntityManagerFactoryWrapper {
 	private static EntityManagerFactory emf;
 
 	static {
-		emf = Persistence.createEntityManagerFactory("hsql");
+		emf = Persistence.createEntityManagerFactory("my-pu");
 	}
 
 	public static EntityManager getEntityManager() {

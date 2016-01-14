@@ -11,7 +11,7 @@ import javax.persistence.TypedQuery;
 import br.com.dxt.formacao.domain.AbstractEntity;
 import br.com.dxt.formacao.utils.EntityManagerFactoryWrapper;
 
-public class AbstractServiceImpl<T> implements AbstractService<T> {
+public class AbstractServiceImpl<T extends AbstractEntity> implements AbstractService<T> {
 
 	private Class<T> clazz;
 	private EntityManager em = EntityManagerFactoryWrapper.getEntityManager();
@@ -50,7 +50,7 @@ public class AbstractServiceImpl<T> implements AbstractService<T> {
 		}
 	}
 
-	public <E extends AbstractEntity> E salvar(E entity) {
+	public T salvar(T entity) {
 		EntityManager em = getEm();
 
 		EntityTransaction transaction = em.getTransaction();
@@ -64,13 +64,12 @@ public class AbstractServiceImpl<T> implements AbstractService<T> {
 		return entity;
 	}
 
-	public <E extends AbstractEntity> E remove(E entity) {
+	public void remove(T entity) {
 		EntityManager em = getEm();
 
 		EntityTransaction transaction = em.getTransaction();
 		transaction.begin();
 		em.remove(entity);
 		transaction.commit();
-		return entity;
 	}
 }

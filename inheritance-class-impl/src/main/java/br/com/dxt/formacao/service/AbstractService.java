@@ -4,7 +4,7 @@ import java.util.List;
 
 import br.com.dxt.formacao.domain.AbstractEntity;
 
-public interface AbstractService<T> {
+public interface AbstractService<T extends AbstractEntity> {
 
 	public abstract T buscarPorId(Object id);
 
@@ -13,8 +13,8 @@ public interface AbstractService<T> {
 	public abstract List<T> buscarPorFiltroSimplesIgual(String field,
 			Object value);
 
-	public abstract <E extends AbstractEntity> E salvar(E entity);
+	public abstract T salvar(T entity);
 
-	public abstract <E extends AbstractEntity> E remove(E entity);
+	public abstract void remove(T entity);
 
 }

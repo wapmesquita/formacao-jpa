@@ -2,18 +2,11 @@ package br.com.dxt.formacao.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="tb_produtos")
-public class Produto {
-
-	@Id
-	@GeneratedValue(strategy=GenerationType.SEQUENCE)
-	public Long id;
+public class Produto extends AbstractEntity {
 
 	@Column(name="code", length=20, nullable=false, unique=true)
 	public String codigo;

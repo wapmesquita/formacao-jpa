@@ -43,7 +43,7 @@ public class CadastroProdutos {
 			long id = Long.parseLong(Utils
 					.getString("Digite o id do produto para excluir"));
 			if (id != 0) {
-				service.excluir(id);
+				service.remove(service.buscarPorId(id));
 			}
 		}
 
