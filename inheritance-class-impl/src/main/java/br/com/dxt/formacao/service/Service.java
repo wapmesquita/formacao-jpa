@@ -6,8 +6,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 
 import br.com.dxt.formacao.domain.AbstractEntity;
-import br.com.dxt.formacao.domain.Pessoa;
-import br.com.dxt.formacao.domain.Produto;
 import br.com.dxt.formacao.utils.EntityManagerFactoryWrapper;
 
 public class Service<T extends AbstractEntity> implements AbstractService<T> {
