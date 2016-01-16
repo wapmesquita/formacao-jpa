@@ -2,7 +2,11 @@ package br.com.dxt.formacao.domain;
 
 import java.util.Date;
 
+import javax.persistence.AttributeOverride;
+import javax.persistence.AttributeOverrides;
+import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -20,16 +24,23 @@ public class PessoaFisica extends Pessoa {
 
 	public String celular;
 
-	@Override
-	public String toString() {
-		return "PessoaFisica [cpf=" + cpf + ", dataNascimento="
-				+ dataNascimento + ", rg=" + rg + ", celular=" + celular
-				+ ", id=" + id + ", name=" + name + ", endereco=" + endereco
-				+ ", cidade=" + cidade + ", uf=" + uf + ", telefone="
-				+ telefone + ", toString()=" + super.toString()
-				+ ", getClass()=" + getClass() + ", hashCode()=" + hashCode()
-				+ "]";
-	}
-
+	@Embedded
+	@AttributeOverrides(
+			{
+				@AttributeOverride(
+						name="logradouro",
+						column=@Column(
+								name="end_com_logradouro"
+								)
+				),
+				@AttributeOverride(
+						name="uf",
+						column=@Column(
+								name="end_com_uf"
+								)
+				)
+			}
+	)
+	public Endereco enderecoComercial;
 
 }

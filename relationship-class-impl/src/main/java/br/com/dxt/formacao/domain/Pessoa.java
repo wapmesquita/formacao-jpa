@@ -2,6 +2,7 @@ package br.com.dxt.formacao.domain;
 
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -16,22 +17,10 @@ public abstract class Pessoa extends AbstractEntity {
 	@Column(name="nome")
 	public String name;
 
-	public String endereco;
-
-	public String cidade;
-
-	@Column(length=2)
-	public String uf;
+	@Embedded
+	public Endereco endereco;
 
 	public String telefone;
-
-	@Override
-	public String toString() {
-		return "Pessoa [id=" + id + ", name=" + name + ", endereco=" + endereco
-				+ ", cidade=" + cidade + ", uf=" + uf + ", telefone="
-				+ telefone + "]";
-	}
-
 
 
 }

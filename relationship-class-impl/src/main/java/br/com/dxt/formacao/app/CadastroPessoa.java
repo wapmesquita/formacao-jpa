@@ -1,5 +1,6 @@
 package br.com.dxt.formacao.app;
 
+import br.com.dxt.formacao.domain.Endereco;
 import br.com.dxt.formacao.domain.Pessoa;
 import br.com.dxt.formacao.domain.PessoaFisica;
 import br.com.dxt.formacao.domain.PessoaJuridica;
@@ -12,7 +13,9 @@ public class CadastroPessoa {
 		PessoaService service = new PessoaServiceImpl();
 		PessoaFisica pf = new PessoaFisica();
 		pf.name = "Walter";
-		pf.cidade = "Campinas";
+		pf.endereco = new Endereco();
+		pf.endereco.logradouro = "Rua das camelias";
+		pf.endereco.uf = "SP";
 		pf.cpf = "1111111111";
 		pf.rg = "1231231233";
 
@@ -20,7 +23,9 @@ public class CadastroPessoa {
 
 		PessoaJuridica pj = new PessoaJuridica();
 		pj.name = "Dextra";
-		pj.cidade = "Campinas";
+		pj.endereco = new Endereco();
+		pj.endereco.logradouro = "Rua das camelias";
+		pj.endereco.uf = "SP";
 		pj.cnpj = "999999999999";
 
 		service.salvarPessoa(pj);

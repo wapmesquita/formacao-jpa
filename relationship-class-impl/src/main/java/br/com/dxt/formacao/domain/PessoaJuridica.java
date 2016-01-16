@@ -18,14 +18,5 @@ public class PessoaJuridica extends Pessoa {
 	@Temporal(TemporalType.DATE)
 	public Date dataFundacao;
 
-	@Override
-	public String toString() {
-		return "PessoaJuridica [cnpj=" + cnpj + ", dataFundacao="
-				+ dataFundacao + ", id=" + id + ", name=" + name
-				+ ", endereco=" + endereco + ", cidade=" + cidade + ", uf="
-				+ uf + ", telefone=" + telefone + ", toString()="
-				+ super.toString() + ", getClass()=" + getClass()
-				+ ", hashCode()=" + hashCode() + "]";
-	}
 
 }
