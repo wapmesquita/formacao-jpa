@@ -8,12 +8,15 @@ import javax.persistence.Column;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
 @DiscriminatorValue(value="PF")
-public class PessoaFisica extends Pessoa {
+@Inheritance(strategy=InheritanceType.TABLE_PER_CLASS)
+public abstract class PessoaFisica extends Pessoa {
 
 	public String cpf;
 

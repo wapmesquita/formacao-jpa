@@ -2,6 +2,7 @@ package br.com.dxt.formacao.app;
 
 import javax.persistence.EntityManager;
 
+import br.com.dxt.formacao.domain.Funcionario;
 import br.com.dxt.formacao.domain.PessoaFisica;
 import br.com.dxt.formacao.utils.EntityManagerFactoryWrapper;
 
@@ -13,7 +14,7 @@ public class LifeCycle {
 				.getEntityManagerFactory()
 				.createEntityManager();
 
-		PessoaFisica pessoaTransient = new PessoaFisica();
+		PessoaFisica pessoaTransient = new Funcionario();
 		pessoaTransient.cpf = "cpf";
 		pessoaTransient.name = "PessoaFisica";
 
@@ -23,13 +24,14 @@ public class LifeCycle {
 		System.out
 				.println(pessoaTransient.id);
 
-		PessoaFisica pessoaDetached = new PessoaFisica();
+		PessoaFisica pessoaDetached = new Funcionario();
 		pessoaDetached.id = 1L;
 		pessoaDetached.cpf = "rg";
 		pessoaDetached.name = "aaa";
 
 		em.getTransaction().begin();
-		pessoaDetached = em.merge(pessoaDetached);
+		pessoaDetached = em
+				.merge(pessoaDetached);
 		em.getTransaction().commit();
 
 		em.close();
@@ -39,7 +41,7 @@ public class LifeCycle {
 		em = EntityManagerFactoryWrapper
 				.getEntityManagerFactory()
 				.createEntityManager();
-		//em.remove(pessoaDetached);
+		// em.remove(pessoaDetached);
 
 		PessoaFisica pessoa = em.find(
 				PessoaFisica.class, 1L); // gerenciado

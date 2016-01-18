@@ -1,6 +1,7 @@
 package br.com.dxt.formacao.app;
 
 import br.com.dxt.formacao.domain.Endereco;
+import br.com.dxt.formacao.domain.Funcionario;
 import br.com.dxt.formacao.domain.Pessoa;
 import br.com.dxt.formacao.domain.PessoaFisica;
 import br.com.dxt.formacao.domain.PessoaJuridica;
@@ -11,7 +12,7 @@ import br.com.dxt.formacao.utils.EntityManagerFactoryWrapper;
 public class CadastroPessoa {
 	public static void main(String[] args) {
 		PessoaService service = new PessoaServiceImpl();
-		PessoaFisica pf = new PessoaFisica();
+		PessoaFisica pf = new Funcionario();
 		pf.name = "Walter";
 		pf.endereco = new Endereco();
 		pf.endereco.logradouro = "Rua das camelias";
