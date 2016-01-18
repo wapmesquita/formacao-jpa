@@ -5,7 +5,7 @@
 	<artifactId>relationship-impl</artifactId>
 	<packaging>jar</packaging>
 	<version>1.0-SNAPSHOT</version>
-	<name>inheritance-impl</name>
+	<name>relationship-impl</name>
 	<url>http://maven.apache.org</url>
 	<dependencies>
 		<dependency>
