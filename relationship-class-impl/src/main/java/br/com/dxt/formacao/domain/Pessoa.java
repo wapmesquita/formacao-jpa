@@ -1,11 +1,16 @@
 package br.com.dxt.formacao.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -20,7 +25,10 @@ public abstract class Pessoa extends AbstractEntity {
 	@Embedded
 	public Endereco endereco;
 
-	public String telefone;
-
+	@OneToMany(orphanRemoval=true,
+			cascade={CascadeType.PERSIST,
+				CascadeType.MERGE})
+	public List<Telefone> telefones =
+		new ArrayList<Telefone>();
 
 }

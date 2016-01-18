@@ -1,5 +1,9 @@
 package br.com.dxt.formacao.service;
 
+import java.util.List;
+
+import javax.persistence.TypedQuery;
+
 import br.com.dxt.formacao.domain.Funcionario;
 
 public class FuncionarioService extends AbstractServiceImpl<Funcionario> {
@@ -27,6 +31,25 @@ public class FuncionarioService extends AbstractServiceImpl<Funcionario> {
 
 		em.getTransaction().commit();
 		return f;
+	}
+
+	public List<Funcionario>
+		buscarQuaisRecebemDia(Integer dia) {
+
+		StringBuilder sb = new StringBuilder();
+		sb.append(" FROM ");
+		sb.append(Funcionario.class.getSimpleName());
+		sb.append(" f ");
+		sb.append(" WHERE f.configHolerite.diaPagamento");
+		sb.append(" = :dia");
+
+		TypedQuery<Funcionario> qry =
+				em.createQuery(sb.toString(),
+						Funcionario.class);
+
+		qry.setParameter("dia", dia);
+
+		return qry.getResultList();
 	}
 
 }

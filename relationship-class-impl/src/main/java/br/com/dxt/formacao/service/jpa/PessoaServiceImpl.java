@@ -8,30 +8,42 @@ import br.com.dxt.formacao.domain.Pessoa;
 import br.com.dxt.formacao.service.AbstractServiceImpl;
 import br.com.dxt.formacao.service.PessoaService;
 
-public class PessoaServiceImpl
-	extends AbstractServiceImpl<Pessoa>
-	implements PessoaService {
+public class PessoaServiceImpl extends
+		AbstractServiceImpl<Pessoa>
+		implements PessoaService {
 
 	public PessoaServiceImpl() {
 		super(Pessoa.class);
 	}
 
-	public List<Pessoa> buscarPessoaPorNome(String nome) {
-		String sql = "FROM " + Pessoa.class.getSimpleName() + " p "
+	public List<Pessoa> buscarPessoaPorNome(
+			String nome) {
+		String sql = "FROM "
+				+ Pessoa.class
+						.getSimpleName()
+				+ " p "
 				+ "WHERE UPPER(p.name) LIKE UPPER(:paramName)";
 
-		TypedQuery<Pessoa> qry = em.createQuery(sql, Pessoa.class);
+		TypedQuery<Pessoa> qry = em
+				.createQuery(sql,
+						Pessoa.class);
 
-		qry.setParameter("paramName", "%" + nome + "%");
+		qry.setParameter("paramName",
+				"%" + nome + "%");
 
 		return qry.getResultList();
 	}
 
 	public Double getMediaIdade() {
-		String sql = "SELECT AVG(p.age) media " + " FROM "
-				+ Pessoa.class.getSimpleName() + " p ";
+		String sql = "SELECT AVG(p.age) media "
+				+ " FROM "
+				+ Pessoa.class
+						.getSimpleName()
+				+ " p ";
 
-		TypedQuery<Double> qry = em.createQuery(sql, Double.class);
+		TypedQuery<Double> qry = em
+				.createQuery(sql,
+						Double.class);
 
 		return qry.getSingleResult();
 	}
