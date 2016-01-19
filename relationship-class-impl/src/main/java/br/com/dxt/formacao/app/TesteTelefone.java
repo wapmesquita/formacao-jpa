@@ -1,11 +1,14 @@
 package br.com.dxt.formacao.app;
 
 import java.util.Date;
+import java.util.List;
 
 import br.com.dxt.formacao.domain.Funcionario;
 import br.com.dxt.formacao.domain.Holerite;
+import br.com.dxt.formacao.domain.Pessoa;
 import br.com.dxt.formacao.domain.Telefone;
 import br.com.dxt.formacao.service.FuncionarioService;
+import br.com.dxt.formacao.service.jpa.PessoaServiceImpl;
 import br.com.dxt.formacao.utils.EntityManagerFactoryWrapper;
 
 public class TesteTelefone {
@@ -24,6 +27,13 @@ public class TesteTelefone {
 		for (Funcionario f : funcService
 				.buscarQuaisRecebemDia(10))
 			System.out.println(f.name);
+
+		List<Pessoa> pessoas =
+				new PessoaServiceImpl().
+				buscarPorDDD("19");
+
+		for (Pessoa p : pessoas)
+			System.out.println(p.name);
 
 		EntityManagerFactoryWrapper
 				.close();
@@ -63,7 +73,8 @@ public class TesteTelefone {
 
 	private static Funcionario criaFuncionario(
 			String nome, String cpf,
-			Holerite configHolerite, Telefone... telefones) {
+			Holerite configHolerite,
+			Telefone... telefones) {
 
 		Funcionario f = new Funcionario();
 		f.name = nome;

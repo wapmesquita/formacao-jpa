@@ -10,6 +10,7 @@ import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -25,6 +26,7 @@ public abstract class Pessoa extends AbstractEntity {
 	@Embedded
 	public Endereco endereco;
 
+	@JoinColumn(name="pessoa_id")
 	@OneToMany(orphanRemoval=true,
 			cascade={CascadeType.PERSIST,
 				CascadeType.MERGE})

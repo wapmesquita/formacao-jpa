@@ -58,4 +58,19 @@ public class PessoaServiceImpl extends
 		return buscarTodos();
 	}
 
+	public List<Pessoa> buscarPorDDD(String ddd) {
+		StringBuilder sb = new StringBuilder();
+		sb.append(" SELECT p ");
+		sb.append(" FROM ");
+		sb.append(Pessoa.class.getSimpleName());
+		sb.append(" p ");
+		sb.append(" INNER JOIN p.telefones t ");
+		sb.append(" WHERE t.ddd = :ddd");
+
+		TypedQuery<Pessoa> qry =
+				em.createQuery(sb.toString(), Pessoa.class);
+		qry.setParameter("ddd", ddd);
+		return qry.getResultList();
+	}
+
 }
