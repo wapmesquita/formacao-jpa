@@ -48,14 +48,17 @@ public class TesteCategoria {
 
 
 		VendaService vendaServImpl = new VendaService();
-/**
-		vendas = vendaServImpl.buscarVendaPorCategoriaProduto("C1");
+
+		AbstractServiceImpl<Categoria> catService = new AbstractServiceImpl<Categoria>(Categoria.class);
+		Categoria cat = catService.buscarPorFiltroSimplesIgual("codigo", "C1").get(0);
+
+		List<Venda> vendas = vendaServImpl.buscarVendaPorCategoria(cat);
 
 		System.out.println("listando vendas com categoria C1");
 		for (Venda venda : vendas) {
 			System.out.println(venda);
 		}
-**/
+
 		EntityManagerFactoryWrapper
 				.close();
 	}

@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.TypedQuery;
 
+import br.com.dxt.formacao.domain.Categoria;
 import br.com.dxt.formacao.domain.Venda;
 
 public class VendaService extends AbstractServiceImpl<Venda> {
@@ -27,4 +28,20 @@ public class VendaService extends AbstractServiceImpl<Venda> {
 	}
 
 
+	public List<Venda>
+		buscarVendaPorCategoria(Categoria c) {
+
+	StringBuilder sb = new StringBuilder();
+	sb.append("SELECT v FROM ");
+	sb.append(Venda.class.getSimpleName());
+	sb.append(" v INNER JOIN v.itens i");
+	sb.append(" INNER JOIN i.produto.categorias c ");
+	sb.append(" WHERE c = :cat");
+
+	TypedQuery<Venda> qry = em.
+			createQuery(sb.toString(), Venda.class);
+	qry.setParameter("cat", c);
+
+	return qry.getResultList();
+}
 }
