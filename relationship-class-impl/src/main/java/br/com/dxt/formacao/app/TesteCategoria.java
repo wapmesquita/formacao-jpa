@@ -5,8 +5,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import org.hsqldb.util.DatabaseManagerSwing;
-
+import br.com.dxt.formacao.domain.Categoria;
 import br.com.dxt.formacao.domain.Cliente;
 import br.com.dxt.formacao.domain.Funcionario;
 import br.com.dxt.formacao.domain.Holerite;
@@ -20,7 +19,7 @@ import br.com.dxt.formacao.service.VendaService;
 import br.com.dxt.formacao.service.jpa.PessoaServiceImpl;
 import br.com.dxt.formacao.utils.EntityManagerFactoryWrapper;
 
-public class TesteVenda {
+public class TesteCategoria {
 
 	public static void main(
 			String[] args) {
@@ -38,22 +37,66 @@ public class TesteVenda {
 		PessoaServiceImpl pessoaService = new PessoaServiceImpl();
 		pessoaService.salvar(c1);
 
+		cadastraCategoria();
+
 		cadastraProdutos();
 
 		Venda v1 = cadastrarVenda(f1, c1);
 
-		VendaService vs = new VendaService();
-
-		List<Venda> vendas = vs.
-				buscarVendaPorCodigoProduto("123");
-		System.out
-				.println(vendas);
+		AbstractServiceImpl<Venda> vendaService = new AbstractServiceImpl<Venda>(Venda.class);
+		System.out.println(vendaService.buscarTodos().get(0));
 
 
-		EntityManagerFactoryWrapper.close();
+		VendaService vendaServImpl = new VendaService();
+/**
+		vendas = vendaServImpl.buscarVendaPorCategoriaProduto("C1");
+
+		System.out.println("listando vendas com categoria C1");
+		for (Venda venda : vendas) {
+			System.out.println(venda);
+		}
+**/
+		EntityManagerFactoryWrapper
+				.close();
 	}
 
+	private static void cadastraCategoria() {
+
+		EntityManager em = EntityManagerFactoryWrapper.getEntityManager();
+
+		em.getTransaction().begin();
+		Categoria c = new Categoria();
+		c.codigo = "C1";
+		c.descricao = "Categoria 1";
+		em.persist(c);
+		em.getTransaction().commit();
+
+		em.getTransaction().begin();
+		c = new Categoria();
+		c.codigo = "C2";
+		c.descricao = "Categoria 2";
+		em.persist(c);
+		em.getTransaction().commit();
+
+		em.getTransaction().begin();
+		c = new Categoria();
+		c.codigo = "C3";
+		c.descricao = "Categoria 3";
+		em.persist(c);
+		em.getTransaction().commit();
+
+		em.getTransaction().begin();
+		c = new Categoria();
+		c.codigo = "C4";
+		c.descricao = "Categoria 4";
+		em.persist(c);
+		em.getTransaction().commit();
+
+		em.close();
+	}
 	private static void cadastraProdutos() {
+	AbstractServiceImpl<Categoria> categoriaService = new AbstractServiceImpl<Categoria>(Categoria.class);
+	List<Categoria> categorias = categoriaService.buscarTodos();
 
 		EntityManager em = EntityManagerFactoryWrapper.getEntityManager();
 
@@ -62,14 +105,19 @@ public class TesteVenda {
 		p.codigo = "123";
 		p.nome="Chocolate";
 		p.precoUnitario = 10.45;
+		p.categorias.add(categorias.get(0));
+		p.categorias.add(categorias.get(1));
 		em.persist(p);
 		em.getTransaction().commit();
+
 
 		em.getTransaction().begin();
 		p = new Produto();
 		p.codigo = "4346";
 		p.nome="Leite";
 		p.precoUnitario = 2.45;
+		p.categorias.add(categorias.get(2));
+		p.categorias.add(categorias.get(3));
 		em.persist(p);
 		em.getTransaction().commit();
 
@@ -78,6 +126,8 @@ public class TesteVenda {
 		p.codigo = "24543";
 		p.nome="Arroz";
 		p.precoUnitario = 13.0;
+		p.categorias.add(categorias.get(0));
+		p.categorias.add(categorias.get(1));
 		em.persist(p);
 		em.getTransaction().commit();
 
@@ -86,6 +136,7 @@ public class TesteVenda {
 		p.codigo = "128743";
 		p.nome="Feijao";
 		p.precoUnitario = 7.12;
+		p.categorias.add(categorias.get(3));
 		em.persist(p);
 
 		em.getTransaction().commit();
@@ -116,6 +167,30 @@ public class TesteVenda {
 
 		AbstractServiceImpl<Venda> vendaService = new AbstractServiceImpl<Venda>(Venda.class);
 		vendaService.salvar(v);
+
+
+		Venda v1 = new Venda();
+		v1.date = new Date();
+		v1.funcionario = funcionario;
+		v1.cliente = cliente;
+
+		ItemVenda iv1 = new ItemVenda();
+		iv1.produto = produtos.get(0);
+		iv1.quantidade = 3;
+		iv1.valorTotal = iv1.quantidade * iv1.produto.precoUnitario;
+		v1.itens.add(iv1);
+
+		iv1 = new ItemVenda();
+		iv1.produto = produtos.get(2);
+		iv1.quantidade = 2;
+		iv1.valorTotal = iv1.quantidade * iv1.produto.precoUnitario;
+		v1.itens.add(iv1);
+
+		AbstractServiceImpl<Venda> vendaService1 = new AbstractServiceImpl<Venda>(Venda.class);
+		vendaService1.salvar(v1);
+
+
+
 		return v;
 	}
 

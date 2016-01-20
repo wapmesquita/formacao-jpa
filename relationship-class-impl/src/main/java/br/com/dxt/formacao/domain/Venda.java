@@ -6,21 +6,25 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
 public class Venda extends AbstractEntity {
-	
+
 	public Date date;
 	public Double valorTotal;
 
-	@OneToMany(cascade={CascadeType.PERSIST, CascadeType.MERGE}, orphanRemoval=true)
+	@JoinColumn(name="venda_id")
+	@OneToMany(cascade={CascadeType.PERSIST,
+			CascadeType.MERGE},
+			orphanRemoval=true)
 	public List<ItemVenda> itens = new ArrayList<ItemVenda>();
-	
-	@ManyToOne
+
+	@ManyToOne(optional=false)
 	public Funcionario funcionario;
-	
+
 	@ManyToOne
 	public Cliente cliente;
 

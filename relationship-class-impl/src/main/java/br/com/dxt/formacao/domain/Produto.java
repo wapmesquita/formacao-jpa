@@ -1,7 +1,11 @@
 package br.com.dxt.formacao.domain;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -19,6 +23,9 @@ public class Produto extends AbstractEntity {
 
 	@Column(name="preco", precision=12,scale=2,nullable=false)
 	public Double precoUnitario;
+
+	@ManyToMany
+	public List<Categoria> categorias = new ArrayList<>();
 
 	@Override
 	public String toString() {
