@@ -49,8 +49,10 @@ public class TesteVenda {
 		System.out
 				.println(vendas);
 
-
 		EntityManagerFactoryWrapper.close();
+
+		System.out
+				.println(vendas.get(0).funcionario);
 	}
 
 	private static void cadastraProdutos() {

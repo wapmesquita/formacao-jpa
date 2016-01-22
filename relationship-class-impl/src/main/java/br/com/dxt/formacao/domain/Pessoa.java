@@ -28,8 +28,7 @@ public abstract class Pessoa extends AbstractEntity {
 
 	@JoinColumn(name="pessoa_id")
 	@OneToMany(orphanRemoval=true,
-			cascade={CascadeType.PERSIST,
-				CascadeType.MERGE})
+			cascade={CascadeType.PERSIST, CascadeType.MERGE})
 	public List<Telefone> telefones =
 		new ArrayList<Telefone>();
 

@@ -32,7 +32,7 @@ public class VendaService extends AbstractServiceImpl<Venda> {
 		buscarVendaPorCategoria(Categoria c) {
 
 	StringBuilder sb = new StringBuilder();
-	sb.append("SELECT v FROM ");
+	sb.append("SELECT DISTINCT v FROM ");
 	sb.append(Venda.class.getSimpleName());
 	sb.append(" v INNER JOIN v.itens i");
 	sb.append(" INNER JOIN i.produto.categorias c ");

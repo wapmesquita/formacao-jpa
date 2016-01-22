@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -22,19 +23,21 @@ public class Venda extends AbstractEntity {
 			orphanRemoval=true)
 	public List<ItemVenda> itens = new ArrayList<ItemVenda>();
 
-	@ManyToOne(optional=false)
+	@ManyToOne(optional=false, fetch=FetchType.LAZY)
 	public Funcionario funcionario;
 
-	@ManyToOne
+	@ManyToOne(fetch=FetchType.LAZY)
 	public Cliente cliente;
 
 	@Override
 	public String toString() {
-		return "Venda [date=" + date + ", valorTotal=" + valorTotal
-				+ ", itens=" + itens + ", funcionario=" + funcionario
-				+ ", cliente=" + cliente + ", id=" + id + ", getClass()="
-				+ getClass() + ", hashCode()=" + hashCode() + ", toString()="
-				+ super.toString() + "]";
+		return "Venda [date=" + date
+				+ ", valorTotal="
+				+ valorTotal + ", id="
+				+ id + "]";
 	}
+
+
+
 
 }

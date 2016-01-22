@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 @Entity
 public class Telefone extends AbstractEntity {
 
-	@Column(length=2)
+	@Column(length = 2)
 	public String ddd;
 
 	public String numero;

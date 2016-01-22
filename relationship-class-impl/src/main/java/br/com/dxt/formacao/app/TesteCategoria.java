@@ -57,10 +57,18 @@ public class TesteCategoria {
 		System.out.println("listando vendas com categoria C1");
 		for (Venda venda : vendas) {
 			System.out.println(venda);
+			venda.itens.size();
 		}
 
 		EntityManagerFactoryWrapper
 				.close();
+
+		for (Venda venda : vendas) {
+			System.out.println(venda);
+			System.out.println(venda.itens);
+		}
+
+
 	}
 
 	private static void cadastraCategoria() {
